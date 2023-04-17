@@ -25,7 +25,8 @@ img {
   border: 3px outset #141414;
 }
 
-.reviewContainer {
+.reviewContainer,
+.reviewCard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
