@@ -15,3 +15,13 @@ export const getReviewById = (review_id) => {
       return data.review;
     });
 };
+
+export const getCommentsByReviewId = (review_id) => {
+  return axios
+    .get(
+      `https://nc-games-project-bygx.onrender.com/api/reviews/${review_id}/comments`
+    )
+    .then(({ data }) => {
+      return data.comments;
+    });
+};

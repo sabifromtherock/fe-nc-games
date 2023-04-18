@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 import { useEffect, useState } from "react";
 import { getReviewById } from "../api";
+import CommentList from "./CommentList";
 
 const SingleReview = () => {
   const { review_id } = useParams();
   const [currentReview, setCurrentReview] = useState(true);
-
   const [isLoading, setIsLoading] = useState(true);
+  const date = new Date(currentReview.created_at).toDateString();
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,8 +32,9 @@ const SingleReview = () => {
           comment_count={currentReview.comment_count}
         />
       </div>
-      <p>Created at: {currentReview.created_at}</p>
+      <p>Created at: {date}</p>
       <p>Votes: {currentReview.votes}</p>
+      <CommentList review_id={review_id} />
     </div>
   );
 };

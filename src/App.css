@@ -34,6 +34,28 @@ img {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   margin: 10px;
+  text-decoration: underline;
+}
+
+p {
+  margin: 5px;
+}
+
+.commentCard {
+  border: 2px outset #141414;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.commentBody {
+  border-bottom: 2px solid #141414;
+}
+
+.commentsContainer {
+  margin: auto;
+  width: 40vw;
+  min-width: 300px;
 }
