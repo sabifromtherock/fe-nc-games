@@ -5,6 +5,7 @@
   box-sizing: border-box;
   color: #141414;
   background-color: #d9d9d9;
+  text-decoration: none;
 }
 
 .App {
@@ -22,10 +23,11 @@ img {
 
 img {
   margin: 0;
-  border: 3px outset #141414;
+  border: 3px outset #cf3030;
 }
 
-.reviewContainer {
+.reviewContainer,
+.reviewCard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
