@@ -55,8 +55,10 @@ const SingleReview = () => {
         type="button"
         disabled={isClicked.like}
         onClick={() => {
+          isClicked.dislike
+            ? setIsClicked({ like: false, dislike: false })
+            : setIsClicked({ like: true, dislike: false });
           handleClick(1);
-          setIsClicked({ like: true, dislike: false });
         }}
       >
         Like it!
@@ -66,8 +68,11 @@ const SingleReview = () => {
         type="button"
         disabled={isClicked.dislike}
         onClick={() => {
+          isClicked.like
+            ? setIsClicked({ like: false, dislike: false })
+            : setIsClicked({ like: false, dislike: true });
+
           handleClick(-1);
-          setIsClicked({ like: false, dislike: true });
         }}
       >
         Dislike it!

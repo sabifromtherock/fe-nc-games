@@ -33,6 +33,7 @@ export const patchReviewVote = (review_id, increment) => {
       { inc_votes: increment }
     )
     .then(({ data }) => {
+      console.log(data.review.votes);
       return data.review;
     });
 };
