@@ -23,8 +23,8 @@ const ReviewList = () => {
       <div className="reviewContainer">
         {reviewsList.map((review) => {
           return (
-            <Link to={`/reviews/${review.review_id}`}>
-              <ReviewCard key={review.review_id} {...review} />
+            <Link key={review.review_id} to={`/reviews/${review.review_id}`}>
+              <ReviewCard {...review} />
             </Link>
           );
         })}
