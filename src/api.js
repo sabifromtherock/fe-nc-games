@@ -25,3 +25,33 @@ export const getCommentsByReviewId = (review_id) => {
       return data.comments;
     });
 };
+
+export const patchReviewVote = (review_id, increment) => {
+  return axios
+    .patch(
+      `https://nc-games-project-bygx.onrender.com/api/reviews/${review_id}`,
+      { inc_votes: increment }
+    )
+    .then(({ data }) => {
+      return data.review;
+    });
+};
+
+export const postComment = (review_id, requestBody) => {
+  return axios
+    .post(
+      `https://nc-games-project-bygx.onrender.com/api/reviews/${review_id}/comments`,
+      requestBody
+    )
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
+
+export const getUsers = () => {
+  return axios
+    .get("https://nc-games-project-bygx.onrender.com/api/users")
+    .then(({ data }) => {
+      return data.users;
+    });
+};
