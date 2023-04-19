@@ -25,3 +25,14 @@ export const getCommentsByReviewId = (review_id) => {
       return data.comments;
     });
 };
+
+export const patchReviewVote = (review_id, increment) => {
+  return axios
+    .patch(
+      `https://nc-games-project-bygx.onrender.com/api/reviews/${review_id}`,
+      { inc_votes: increment }
+    )
+    .then(({ data }) => {
+      return data.review;
+    });
+};
