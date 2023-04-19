@@ -28,6 +28,7 @@ const CommentForm = ({ review_id, setCommentsList }) => {
       })
       .catch((err) => {
         setError(true);
+        setHasSubmitted(false);
       });
   };
 
