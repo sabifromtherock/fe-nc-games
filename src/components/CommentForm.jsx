@@ -5,21 +5,30 @@ import UsersDropdownMenu from "./UsersDropdownMenu";
 const CommentForm = ({ review_id, setCommentsList }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("tickle122");
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setHasSubmitted(true);
+    setError(false);
     const requestBody = {
       username: user,
       body: userInput,
     };
 
-    postComment(review_id, requestBody).then((comment) => {
-      setCommentsList((currentComments) => {
-        return [comment, ...currentComments];
+    postComment(review_id, requestBody)
+      .then((comment) => {
+        setCommentsList((currentComments) => {
+          return [comment, ...currentComments];
+        });
+        setUserInput("");
+        setHasSubmitted(false);
+      })
+      .catch((err) => {
+        setError(true);
       });
-      setUserInput("");
-    });
   };
 
   return (
@@ -46,7 +55,12 @@ const CommentForm = ({ review_id, setCommentsList }) => {
             maxLength={100}
             required
           ></textarea>
-          <button type="submit">Submit your comment</button>
+          <button type="submit" disabled={hasSubmitted}>
+            Submit your comment
+          </button>
+          {error ? (
+            <p className="error">Something went wrong, try again later</p>
+          ) : null}
         </form>
       )}
     </div>
