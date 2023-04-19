@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
 import { getCommentsByReviewId } from "../api";
 
-const CommentList = ({ review_id }) => {
-  const [commentsList, setCommentslist] = useState(null);
+const CommentList = ({ review_id, commentsList, setCommentsList }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     getCommentsByReviewId(review_id).then((comments) => {
-      setCommentslist(comments);
+      setCommentsList(comments);
       setIsLoading(false);
     });
-  }, [review_id]);
+  }, [review_id, setCommentsList]);
 
   if (isLoading) return <p>Loading ...</p>;
 

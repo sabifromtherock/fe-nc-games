@@ -3,6 +3,7 @@ import ReviewCard from "./ReviewCard";
 import { useEffect, useState } from "react";
 import { getReviewById, patchReviewVote } from "../api";
 import CommentList from "./CommentList";
+import CommentForm from "./CommentForm";
 
 const SingleReview = () => {
   const { review_id } = useParams();
@@ -11,6 +12,8 @@ const SingleReview = () => {
   const [addedVote, setAddedVote] = useState(0);
   const [error, setError] = useState("");
   const [isClicked, setIsClicked] = useState({ like: false, dislike: false });
+  const [commentsList, setCommentsList] = useState(null);
+
   const date = new Date(currentReview.created_at).toDateString();
 
   const handleClick = (increment) => {
@@ -71,7 +74,6 @@ const SingleReview = () => {
           isClicked.like
             ? setIsClicked({ like: false, dislike: false })
             : setIsClicked({ like: false, dislike: true });
-
           handleClick(-1);
         }}
       >
@@ -80,7 +82,14 @@ const SingleReview = () => {
 
       {error ? <p className="error">{error}</p> : null}
 
-      <CommentList review_id={review_id} />
+      <section>
+        <CommentForm review_id={review_id} setCommentsList={setCommentsList} />
+        <CommentList
+          review_id={review_id}
+          commentsList={commentsList}
+          setCommentsList={setCommentsList}
+        />
+      </section>
     </div>
   );
 };
