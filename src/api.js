@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const getReviews = () => {
+export const getReviews = (category) => {
   return axios
-    .get("https://nc-games-project-bygx.onrender.com/api/reviews")
+    .get(`https://nc-games-project-bygx.onrender.com/api/reviews`, {
+      params: { category: category },
+    })
     .then(({ data }) => {
       return data.reviews;
     });
@@ -53,5 +55,13 @@ export const getUsers = () => {
     .get("https://nc-games-project-bygx.onrender.com/api/users")
     .then(({ data }) => {
       return data.users;
+    });
+};
+
+export const getCategories = () => {
+  return axios
+    .get("https://nc-games-project-bygx.onrender.com/api/categories")
+    .then(({ data }) => {
+      return data.categories;
     });
 };

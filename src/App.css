@@ -17,7 +17,6 @@
 img {
   width: 300px;
   margin: 10px;
-  /* display: inline-block; */
   border-radius: 15px;
 }
 
@@ -27,7 +26,8 @@ img {
 }
 
 .reviewContainer,
-.reviewCard {
+.reviewCard,
+.categoryContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -45,7 +45,8 @@ p {
 }
 
 .commentCard,
-.postSubmit {
+.postSubmit,
+.category {
   border: 2px outset #141414;
   border-radius: 5px;
   margin-top: 10px;
@@ -105,4 +106,15 @@ textarea {
   width: 300px;
   height: 60px;
   font-size: 16px;
+}
+
+.category {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2::first-letter,
+h3::first-letter {
+  text-transform: capitalize;
 }
