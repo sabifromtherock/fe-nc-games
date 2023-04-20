@@ -3,17 +3,17 @@ import ReviewCard from "./ReviewCard";
 import { getReviews } from "../api";
 import { Link } from "react-router-dom";
 
-const ReviewList = () => {
+const ReviewList = ({ category }) => {
   const [reviewsList, setReviewsList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviews) => {
+    getReviews(category).then((reviews) => {
       setReviewsList(reviews);
       setIsLoading(false);
     });
-  }, []);
+  }, [category]);
 
   if (isLoading) return <p>Loading ...</p>;
 
