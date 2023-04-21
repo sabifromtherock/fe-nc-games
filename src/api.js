@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getReviews = (category) => {
+export const getReviews = (category, order, sort_by) => {
   return axios
     .get(`https://nc-games-project-bygx.onrender.com/api/reviews`, {
-      params: { category: category },
+      params: { category: category, order: order, sort_by: sort_by },
     })
     .then(({ data }) => {
       return data.reviews;

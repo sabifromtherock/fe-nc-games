@@ -86,7 +86,8 @@ form {
   align-items: center;
 }
 
-form p {
+form p,
+select option {
   margin: 10px;
 }
 
@@ -117,4 +118,15 @@ textarea {
 h2::first-letter,
 h3::first-letter {
   text-transform: capitalize;
+}
+
+#sortForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+select {
+  margin-right: 20px;
 }
