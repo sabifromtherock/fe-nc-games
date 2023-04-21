@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const UsersDropdownMenu = ({ user, setUser }) => {
   const [usersArr, setUsersArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/reviews");
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -16,7 +23,8 @@ const UsersDropdownMenu = ({ user, setUser }) => {
   if (isLoading) return <p>Loading ...</p>;
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
+      <h2>Please pretend to be one of the existing user!</h2>
       <p className="error">
         Note that <br />
         Login is not implemented yet so <br />
@@ -29,6 +37,10 @@ const UsersDropdownMenu = ({ user, setUser }) => {
           setUser(event.target.value);
         }}
       >
+        <option value="" disabled hidden>
+          Select a user
+        </option>
+
         {usersArr.map((user) => {
           return (
             <option value={user.username} key={user.username}>
@@ -37,7 +49,8 @@ const UsersDropdownMenu = ({ user, setUser }) => {
           );
         })}
       </select>
-    </div>
+      <button>Pretend</button>
+    </form>
   );
 };
 

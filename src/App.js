@@ -6,16 +6,26 @@ import SingleReview from "./components/SingleReview";
 import CategoryList from "./components/CategoryList";
 import NavBar from "./components/NavBar";
 import CategoryReviews from "./components/CategoryReviews";
+import UsersDropdownMenu from "./components/UsersDropdownMenu";
+import { useState } from "react";
 
 function App() {
+  const [user, setUser] = useState("");
+
   return (
     <div className="App">
-      <Header />
+      <Header user={user} />
       <NavBar />
       <Routes>
-        <Route path="/" element={<ReviewList />} />
+        <Route
+          path="/"
+          element={<UsersDropdownMenu user={user} setUser={setUser} />}
+        />
         <Route path="/reviews" element={<ReviewList />} />
-        <Route path="/reviews/:review_id" element={<SingleReview />} />
+        <Route
+          path="/reviews/:review_id"
+          element={<SingleReview user={user} />}
+        />
         <Route path="/categories" element={<CategoryList />} />
         <Route path="/categories/:category" element={<CategoryReviews />} />
       </Routes>

@@ -65,3 +65,9 @@ export const getCategories = () => {
       return data.categories;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return axios.delete(
+    `https://nc-games-project-bygx.onrender.com/api/comments/${comment_id}`
+  );
+};

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
 import { getCommentsByReviewId } from "../api";
 
-const CommentList = ({ review_id, commentsList, setCommentsList }) => {
+const CommentList = ({ review_id, commentsList, setCommentsList, user }) => {
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleDelete = () => {};
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,7 +25,14 @@ const CommentList = ({ review_id, commentsList, setCommentsList }) => {
         <h3>Comments on this review</h3>
       )}
       {commentsList.map((comment) => {
-        return <CommentCard key={comment.comment_id} {...comment} />;
+        return (
+          <div key={comment.comment_id}>
+            <CommentCard {...comment} />
+            {user === comment.author ? (
+              <button onClick={handleDelete}>Delete this comment</button>
+            ) : null}
+          </div>
+        );
       })}
     </div>
   );

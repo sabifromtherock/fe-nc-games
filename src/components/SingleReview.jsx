@@ -5,7 +5,7 @@ import { getReviewById, patchReviewVote } from "../api";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 
-const SingleReview = () => {
+const SingleReview = ({ user }) => {
   const { review_id } = useParams();
   const [currentReview, setCurrentReview] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,11 +83,16 @@ const SingleReview = () => {
       {error ? <p className="error">{error}</p> : null}
 
       <section>
-        <CommentForm review_id={review_id} setCommentsList={setCommentsList} />
+        <CommentForm
+          review_id={review_id}
+          setCommentsList={setCommentsList}
+          user={user}
+        />
         <CommentList
           review_id={review_id}
           commentsList={commentsList}
           setCommentsList={setCommentsList}
+          user={user}
         />
       </section>
     </div>
