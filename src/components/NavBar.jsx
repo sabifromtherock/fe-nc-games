@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <nav>
       <Link to={"/categories"}>
@@ -9,6 +9,11 @@ const NavBar = () => {
       <Link to={"/reviews"}>
         <button type="button">Go to the reviews</button>
       </Link>
+      {!user ? (
+        <Link to={"/"}>
+          <button type="button">Go and pretend</button>
+        </Link>
+      ) : null}
     </nav>
   );
 };

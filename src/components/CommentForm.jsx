@@ -33,11 +33,12 @@ const CommentForm = ({ review_id, setCommentsList, user }) => {
 
   return (
     <div className="postSubmit">
+      <p>Leave a comment here</p>
       {!user ? (
         <>
           <p className="error">
             You are not logged in <br /> Please pretend to be an existing user
-            to leave a review
+            to leave a comment
           </p>
           <Link to={"/"}>
             <button>Go and pretend</button>

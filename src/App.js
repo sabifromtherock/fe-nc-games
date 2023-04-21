@@ -8,14 +8,16 @@ import NavBar from "./components/NavBar";
 import CategoryReviews from "./components/CategoryReviews";
 import UsersDropdownMenu from "./components/UsersDropdownMenu";
 import { useState } from "react";
+import UserBar from "./components/UserBar";
 
 function App() {
   const [user, setUser] = useState("");
 
   return (
     <div className="App">
-      <Header user={user} />
-      <NavBar />
+      <Header />
+      <UserBar user={user} />
+      <NavBar user={user} />
       <Routes>
         <Route
           path="/"

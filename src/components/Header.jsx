@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Header = ({ user }) => {
+const Header = () => {
   return (
     <header>
-      <Link to={"/reviews"}>
-        <h1>NC Games</h1>
-      </Link>
-      <p>You are pretending to be: {user}</p>
+      <h1>
+        <Link to={"/reviews"}>NC Games</Link>
+      </h1>
     </header>
   );
 };

@@ -5,11 +5,16 @@ const CommentCard = ({ body, author, votes, created_at, comment_id, user }) => {
   const date = new Date(created_at).toDateString();
   const [hasDeleted, setHasDeleted] = useState(false);
   const [error, setError] = useState(false);
+  const [hasTimeElapsed, setHasTimeElapsed] = useState(false);
 
   const handleDelete = (event) => {
     event.preventDefault();
     setHasDeleted(true);
     setError(false);
+
+    setTimeout(() => {
+      setHasTimeElapsed(true);
+    }, 3000);
 
     deleteComment(comment_id).catch((err) => {
       setError(true);
@@ -17,14 +22,13 @@ const CommentCard = ({ body, author, votes, created_at, comment_id, user }) => {
     });
   };
 
-  console.log(user);
-
   return (
-    <div className="commentCard">
-      {hasDeleted ? (
+    <div>
+      {hasTimeElapsed ? null : !hasDeleted ? null : (
         <p className="error">Your comment has been deleted</p>
-      ) : (
-        <div>
+      )}
+      {hasDeleted ? null : (
+        <div className="commentCard">
           <p className="commentBody">{body}</p>
           <p>Comment left by: {author}</p>
           <p>Date: {date}</p>
