@@ -5,8 +5,6 @@ import { getCommentsByReviewId } from "../api";
 const CommentList = ({ review_id, commentsList, setCommentsList, user }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleDelete = () => {};
-
   useEffect(() => {
     setIsLoading(true);
     getCommentsByReviewId(review_id).then((comments) => {
@@ -26,12 +24,7 @@ const CommentList = ({ review_id, commentsList, setCommentsList, user }) => {
       )}
       {commentsList.map((comment) => {
         return (
-          <div key={comment.comment_id}>
-            <CommentCard {...comment} />
-            {user === comment.author ? (
-              <button onClick={handleDelete}>Delete this comment</button>
-            ) : null}
-          </div>
+          <CommentCard key={comment.comment_id} {...comment} user={user} />
         );
       })}
     </div>

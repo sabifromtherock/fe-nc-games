@@ -31,6 +31,7 @@ const UsersDropdownMenu = ({ user, setUser }) => {
         Please pick an existing user
       </p>
       <select
+        required
         className="userOption"
         value={user}
         onChange={(event) => {
