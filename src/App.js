@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <UserBar user={user} />
+      <UserBar user={user} setUser={setUser} />
       <NavBar user={user} />
       <Routes>
         <Route
