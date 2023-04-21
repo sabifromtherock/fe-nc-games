@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { postComment } from "../api";
-import UsersDropdownMenu from "./UsersDropdownMenu";
+import { Link } from "react-router-dom";
 
-const CommentForm = ({ review_id, setCommentsList }) => {
+const CommentForm = ({ review_id, setCommentsList, user }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [user, setUser] = useState("tickle122");
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
@@ -34,17 +33,30 @@ const CommentForm = ({ review_id, setCommentsList }) => {
 
   return (
     <div className="postSubmit">
-      <button
-        type="button"
-        onClick={() => {
-          isClicked ? setIsClicked(false) : setIsClicked(true);
-        }}
-      >
-        Leave a comment
-      </button>
+      <p>Leave a comment here</p>
+      {!user ? (
+        <>
+          <p className="error">
+            You are not logged in <br /> Please pretend to be an existing user
+            to leave a comment
+          </p>
+          <Link to={"/"}>
+            <button>Go and pretend</button>
+          </Link>
+        </>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            isClicked ? setIsClicked(false) : setIsClicked(true);
+          }}
+        >
+          Leave a comment
+        </button>
+      )}
+
       {!isClicked ? null : (
         <form onSubmit={handleSubmit}>
-          <UsersDropdownMenu user={user} setUser={setUser} />
           <label htmlFor="commentInput">Comment:</label>
           <textarea
             id="commentInput"
@@ -56,9 +68,11 @@ const CommentForm = ({ review_id, setCommentsList }) => {
             maxLength={100}
             required
           ></textarea>
+
           <button type="submit" disabled={hasSubmitted}>
             Submit your comment
           </button>
+
           {error ? (
             <p className="error">Something went wrong, try again later</p>
           ) : null}
